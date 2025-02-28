@@ -2,7 +2,7 @@
 
 这是一个模仿苹果iOS系统计算器的网页应用，具有优美大气的界面和完整的计算功能。
 
-![image](https://github.com/user-attachments/assets/ca10efbc-f45a-4979-b3e8-06c4903df899)
+<img src="https://github.com/user-attachments/assets/ca10efbc-f45a-4979-b3e8-06c4903df899" width="250" height="350" />
 
 ## 功能特点
 

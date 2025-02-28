@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f7;
+    overflow: hidden;
+}
+
+.calculator-container {
+    position: relative;
+    width: 300px;
+    border-radius: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 15px;
+    transition: transform 0.2s;
+}
+
+.calculator-container:hover {
+    transform: scale(1.02);
+}
+
+.calculator {
+    width: 100%;
+    height: 100%;
+}
+
+.display {
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 20px 15px 10px;
+    color: white;
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.previous-operand {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    min-height: 30px;
+}
+
+.current-operand {
+    font-size: 60px;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
+button {
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s;
+    color: white;
+    background-color: #333333;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+button:active, button.pressed {
+    transform: scale(0.95);
+    filter: brightness(0.9);
+}
+
+/* 添加按钮按下时的波纹效果 */
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+button:active::after, button.pressed::after {
+    opacity: 1;
+    animation: ripple 0.4s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0) translate(-50%, -50%);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20) translate(-50%, -50%);
+        opacity: 0;
+    }
+}
+
+.number {
+    background-color: #333333;
+}
+
+.zero {
+    grid-column: span 2;
+    width: 100%;
+    border-radius: 30px;
+    padding-left: 20px;
+    justify-content: flex-start;
+    max-width: calc(100% + 10px);
+}
+
+.operator {
+    background-color: #ff9f0a;
+    font-weight: 500;
+}
+
+.special {
+    background-color: #a5a5a5;
+    color: black;
+}
+
+/* 添加一些动画效果 */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* 响应式设计 */
+@media (max-width: 400px) {
+    .calculator-container {
+        width: 280px;
+    }
+    
+    button {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+    
+    .current-operand {
+        font-size: 48px;
+    }
+}
+
+/* 添加苹果设备特有的光泽效果 */
+.calculator-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, 
+        rgba(255, 255, 255, 0), 
+        rgba(255, 255, 255, 0.2), 
+        rgba(255, 255, 255, 0));
+}
+
+/* 添加3D按压效果 */
+button {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active, button.pressed {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(2px) scale(0.95);
+} 
